@@ -16,31 +16,35 @@ class _HomePageState extends State<HomePage> {
     return Container(
       child: Scaffold(
         appBar: AppBar(title: Text('美好人间')),
-        body: Container(
-          height: 1000,
-          child: Column(
-            children: <Widget>[
-              TextField(
-                controller: typeController,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(10.0),
-                  labelText: '美女类型',
-                  helperText: '请输入你喜欢的类型',
+        body: SingleChildScrollView(
+          child: Container(
+            height: 1000,
+            child: Column(
+              children: <Widget>[
+                TextField(
+                  controller: typeController,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(10.0),
+                    labelText: '美女类型',
+                    helperText: '请输入你喜欢的类型',
+                  ),
+                  autofocus: false,
                 ),
-                autofocus: false,
-              ),
-              RaisedButton(
-                child: Text('选择完毕'),
-                onPressed: _choiceAction,
-              ),
-              Text(
-                showText,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-              ),
-            ],
+                RaisedButton(
+                  child: Text('选择完毕'),
+                  onPressed: _choiceAction,
+                ),
+                Text(
+                  showText,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                ),
+              ],
+            ),
           ),
         ),
+        
+        
       ),
     );
   }
@@ -65,8 +69,8 @@ class _HomePageState extends State<HomePage> {
     try {
       Response response;
       var data = { 'name': TypeText };
-      response = await Dio().get(
-        "https://www.easy-mock.com/mock/5c60131a4bed3a6342711498/baixing/dabaojian",
+      response = await Dio().post(
+        "https://www.easy-mock.com/mock/5d80f2d927b8533bd18b4f9d/flutter/jishupang/post_test",
         queryParameters: data,
       );
       return response.data;
